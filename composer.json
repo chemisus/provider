@@ -1,0 +1,22 @@
+{
+  "name": "chemisus/provider",
+  "authors": [
+    {
+      "name": "Terrence Howard",
+      "email": "chemisus@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Chemisus\\": "src/main"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Chemisus\\": "src/test"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.3"
+  }
+}
