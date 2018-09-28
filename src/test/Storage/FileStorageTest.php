@@ -2,22 +2,20 @@
 
 namespace Chemisus\Storage;
 
-use Chemisus\Serialization\JsonSerializer;
-
 class FileStorageTest extends StorageTest
 {
     public static function factory()
     {
-        return new FileStorage(__DIR__, new JsonSerializer());
+        return new FileStorage(__DIR__);
     }
 
     protected function setUp()
     {
         parent::setUp();
 
-        file_put_contents(__DIR__ . '/a', json_encode('A'));
-        file_put_contents(__DIR__ . '/b', json_encode('B'));
-        file_put_contents(__DIR__ . '/c', json_encode('C'));
+        file_put_contents(__DIR__ . '/a', 'A');
+        file_put_contents(__DIR__ . '/b', 'B');
+        file_put_contents(__DIR__ . '/c', 'C');
     }
 
     protected function tearDown()

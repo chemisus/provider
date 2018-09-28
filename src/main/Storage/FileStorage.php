@@ -2,8 +2,6 @@
 
 namespace Chemisus\Storage;
 
-use Chemisus\Serialization\Serializer;
-
 class FileStorage implements Storage
 {
     /**
@@ -12,18 +10,11 @@ class FileStorage implements Storage
     private $directory;
 
     /**
-     * @var Serializer
-     */
-    private $serializer;
-
-    /**
      * @param string $directory
-     * @param Serializer $serializer
      */
-    public function __construct($directory, Serializer $serializer)
+    public function __construct($directory)
     {
         $this->directory = $directory;
-        $this->serializer = $serializer;
     }
 
     public function path($key)
@@ -39,14 +30,12 @@ class FileStorage implements Storage
             throw new InvalidKeyException();
         }
 
-        $value = $this->serializer->deserialize(file_get_contents($path));
-
-        return $value;
+        return file_get_contents($path);
     }
 
     public function put($key, $value)
     {
-        file_put_contents($this->path($key), $this->serializer->serialize($value));
+        file_put_contents($this->path($key), $value);
     }
 
     public function remove($key)
