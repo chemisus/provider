@@ -4,7 +4,7 @@ namespace Chemisus\Storage;
 
 class FileStorageTest extends StorageTest
 {
-    public static function factory()
+    public function factory()
     {
         return new FileStorage(__DIR__);
     }

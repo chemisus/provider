@@ -6,16 +6,16 @@ use Chemisus\TestCase;
 
 abstract class StorageTest extends TestCase
 {
-    public abstract static function factory();
+    public abstract function factory();
 
     public function testFactory()
     {
-        self::assertInstanceOf(Storage::class, static::factory());
+        self::assertInstanceOf(Storage::class, $this->factory());
     }
 
-    public static function dataInvalidKey()
+    public function dataInvalidKey()
     {
-        $storage = static::factory();
+        $storage = $this->factory();
 
         return [
             'x' => [$storage, 'x'],
@@ -34,9 +34,9 @@ abstract class StorageTest extends TestCase
         $this->assertThrows(InvalidKeyException::class, [$storage, 'get'], $key);
     }
 
-    public static function dataValidKey()
+    public function dataValidKey()
     {
-        $storage = static::factory();
+        $storage = $this->factory();
 
         return [
             'a' => [$storage, 'a', 'A'],
@@ -57,9 +57,9 @@ abstract class StorageTest extends TestCase
         $this->assertEquals($expect, $actual);
     }
 
-    public static function dataMutate()
+    public function dataMutate()
     {
-        $storage = static::factory();
+        $storage = $this->factory();
 
         return [
             'm' => [$storage, 'm', 'M'],

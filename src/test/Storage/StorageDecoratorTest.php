@@ -8,7 +8,7 @@ use Chemisus\Storage\StorageDecoration\UpperCaseKeyStorageDecoration;
 
 class StorageDecoratorTest extends StorageTest
 {
-    public static function factory()
+    public function factory()
     {
         $storage = new StorageDecorator(
             $array = new ArrayStorage(),

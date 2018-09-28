@@ -4,7 +4,7 @@ namespace Chemisus\Storage;
 
 class StackStorageTest extends StorageTest
 {
-    public static function factory()
+    public function factory()
     {
         return new StackStorage(
             new ArrayStorage(['a' => 'A', 'b' => 'B']),
