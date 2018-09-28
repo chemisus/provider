@@ -6,11 +6,13 @@ notifications:
   email: false
 
 before_install:
-  - ./build/tools/composer clear-cache
-  - ./build/tools/composer install --dev
+  - composer clear-cache
+
+install:
+  - composer install --dev
 
 script:
-  - ./phpunit --coverage-clover=coverage.xml
+  - ./vendor/bin/phpunit --coverage-clover=coverage.xml
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
