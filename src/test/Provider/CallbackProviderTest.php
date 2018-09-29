@@ -2,14 +2,16 @@
 
 namespace Chemisus\Provider;
 
+use Chemisus\Storage\ArrayStorage;
+
 class CallbackProviderTest extends ProviderTest
 {
     public static function factory()
     {
-        $entries = ['a' => 'A', 'b' => 'B', 'c' => 'C'];
+        $provider = new StorageProvider(new ArrayStorage(['a' => 'A', 'b' => 'B', 'c' => 'C']));
 
-        return new CallbackProvider(function ($key) use ($entries) {
-            return $entries[$key];
+        return new CallbackProvider(function ($context) use ($provider) {
+            return $provider->provide($context);
         });
     }
 }
