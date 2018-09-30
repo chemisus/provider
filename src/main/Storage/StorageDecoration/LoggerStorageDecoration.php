@@ -24,7 +24,18 @@ class LoggerStorageDecoration extends AbstractStorageDecoration
 
     public function get($key, $value)
     {
-        $this->logger->log($this->level, sprintf("FETCH: %s", $key), ['value' => $value]);
+        $this->logger->log($this->level, sprintf("GET %s", $key), ['value' => $value]);
         return $value;
+    }
+
+    public function beforePut($key, $value)
+    {
+        $this->logger->log($this->level, sprintf("PUT %s", $key), ['value' => $value]);
+        return $value;
+    }
+
+    public function beforeRemove($key)
+    {
+        $this->logger->log($this->level, sprintf("DEL %s", $key));
     }
 }
