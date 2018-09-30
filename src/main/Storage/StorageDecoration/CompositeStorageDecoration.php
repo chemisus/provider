@@ -27,7 +27,10 @@ class CompositeStorageDecoration implements StorageDecoration
 
     public function get($key, $value)
     {
-        foreach ($this->decorations as $decoration) {
+        /**
+         * @var StorageDecoration $decoration
+         */
+        foreach (array_reverse($this->decorations) as $decoration) {
             $value = $decoration->get($key, $value);
         }
 
@@ -44,10 +47,7 @@ class CompositeStorageDecoration implements StorageDecoration
 
     public function afterPut($key, $value)
     {
-        /**
-         * @var StorageDecoration $decoration
-         */
-        foreach (array_reverse($this->decorations) as $decoration) {
+        foreach ($this->decorations as $decoration) {
             $decoration->afterPut($key, $value);
         }
     }
