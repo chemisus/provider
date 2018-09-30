@@ -2,8 +2,8 @@
 
 namespace Chemisus\Storage\StorageDecoration;
 
-use Chemisus\Storage\StorageException;
+use Chemisus\Storage\InvalidKeyException;
 
-class KeyExpiredException extends StorageException
+class KeyExpiredException extends InvalidKeyException
 {
 }
