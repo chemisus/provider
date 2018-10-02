@@ -9,10 +9,11 @@ class FilteredStorageTest extends StorageTest
 {
     public function factory()
     {
-        $storage = new FilteredStorage(
-            $array = new ArrayStorage(),
-            new CompositeStorageDecoration(
-                new KeyPatternStorageDecoration('/\w+/')
+        $storage = new StackStorage(
+            new ArrayStorage(),
+            new FilteredStorage(
+                new ArrayStorage(),
+                new KeyPatternStorageDecoration('/\d+/')
             )
         );
 
