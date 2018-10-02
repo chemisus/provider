@@ -16,7 +16,7 @@ class KeyPatternStorageDecoration extends AbstractStorageDecoration
         $this->pattern = $pattern;
     }
 
-    public function key($key)
+    public function beforePut($key, $value)
     {
         if (!preg_match($this->pattern, $key)) {
             throw new InvalidKeyException();
